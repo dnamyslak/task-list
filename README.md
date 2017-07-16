@@ -36,4 +36,4 @@ Add your tasks to the tasks list
 
 
 ### Working demo:
-[http://dnamyslak.pl/_projects/tasks/]
+http://dnamyslak.pl/_projects/tasks/
