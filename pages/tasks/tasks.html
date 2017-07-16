@@ -1,0 +1,97 @@
+	<div class="container">
+		<div class="col-xs-12 col-sm-12 col-md-offset-3 col-md-5 col-lg-offset-3 col-lg-5">
+			<h2></h2>
+			<div class="main-input">
+				<div class="">
+					<input type="text" class="main-input-addtask" ng-model="task" placeholder="Wpisz zadanie ..." ng-keyup="$event.keyCode == 13 ? addTask() : null"><br>
+						<button class="btn btn-default btn-sm main-input-addtask-button"  id="confirmButton" type="button" ng-click="addTask()" value="{{confirmButton}}" ng-model="confirmButton"><span
+								class="glyphicon" ng-class="{'glyphicon-edit': confirmButton == 'Edytuj zadanie', 'glyphicon-plus': confirmButton == 'Dodaj zadanie' }"></span> {{confirmButton}}</button>
+				</div>
+			</div>
+			<hr/>
+
+			<div class="navbar-functions">
+				<div class="col-xs-6">
+					<div class="input-group">
+							<span class="input-group-btn">
+								<button class="btn btn-default" type="button"><span class="glyphicon glyphicon-search"></span></button>
+							</span>
+						<input type="text" class="form-control input-search" placeholder="Szukaj zadania..." ng-model="search.task">
+					</div>
+				</div>
+				<div class="col-xs-6">
+					<div class="btn-group filter-buttons pull-right" role="group" aria-label="task filters">
+						<button type="button" title="Pokaż wszystkie" ng-class="{active: currentVal == 1}" class="btn btn-default btn-sm" ng-click="$ctrl.taskFilter(undefined)"> W </button>
+						<button  type="button" title="Pokaż zakończone" ng-class="{active: currentVal == 2}" class="btn btn-default btn-sm"  ng-click="$ctrl.taskFilter(2)"> Z </button>
+						<button  type="button" title="Pokaż niezakończone" ng-class="{active: currentVal == 3}" class="btn btn-default btn-sm" ng-click="$ctrl.taskFilter(3)" > N </button>
+					</div>
+				</div>
+			</div>
+
+				<ul dnd-list="tasks"
+					class="list-group dnd-list-group">
+
+					<li ng-if="tasks.length == 0" class="list-group-item" style="opacity: 0.4">brak zadań do wykonania...</li>
+					<li ng-repeat="item in tasks | filter:filterFn | filter:search "
+						dnd-draggable="item"
+						dnd-type="'item'"
+						dnd-moved="tasks.splice($index, 1)"
+						dnd-effect-allowed="move"
+						ng-class="{'primary': item.primary == 1, disabled: item.done}"
+						class="list-group-item">
+						<dnd-nodrag>
+							<div class="pull-left">
+								<div dnd-handle="" class="handle dots" draggable="true">:::</div>
+							</div>
+							<div class="pull-right">
+								<div class="">
+									<button class="btn btn-default btn-xs"  title="Edytuj zadanie" uib-tooltip="Edytuj zadanie" ng-show="!item.done" ng-click="editTask($index)"><span class="glyphicon glyphicon-pencil" ></span> </button>
+									<button class="btn btn-success btn-xs" title="Zakończ zadanie" ng-show="!item.done" ng-click="doneTask($index)"><span class="glyphicon glyphicon-ok" ></span> </button>
+									<button class="btn btn-warning btn-xs" title="Wznów zadanie" ng-show="item.done" ng-click="unDoneTask($index)"><span class="glyphicon glyphicon-repeat" ></span> </button>
+									<!--<button class="btn btn-info btn-xs" title="Oznacz jako pilne" ng-show="!item.done" ng-click="isTaskPrimary = !isTaskPrimary"><span class="glyphicon glyphicon-paperclip" ></span> </button>-->
+
+									<button class="btn btn-danger btn-xs" title="Oznacz jako pilne" ng-show="!item.done" ng-click="setPrimary($index)"><span class="glyphicon glyphicon-flash" ></span> </button>
+									<button class="btn btn-danger btn-xs" title="Usuń zadanie" ng-click="deleteTask($index)" ng-show="item.done"><span class="glyphicon glyphicon-remove" ></span> Usuń</button>
+
+								</div>
+							</div>
+
+							<span class="task">{{item.task}}</span>
+							<span title="PILNE !!!" class="task-primary pull-right" ng-if="item.primary == 1"><span class="glyphicon glyphicon-flash" ></span></span>
+							<span title="Zakończone" class="task-done pull-right" ng-if="item.done == true"><span class="glyphicon glyphicon-ok" ></span></span>
+
+
+						</dnd-nodrag>
+					</li>
+					<li class="dndPlaceholder list-group-item list-group-item-info">
+						Upuść tutaj
+					</li>
+				</ul>
+
+			<div class="clearfix"></div>
+
+			<button ng-if="tasks.length > 0" title="Wyczyść pamięć podręczną" class="btn btn-default btn-sm button-clearall" type="button" data-ng-click="showDeletePopup(true)"> Wymaż listę</button>
+
+			<div id="page-mask" data-ng-show="displayDeletePopup">
+				<div class="alert alert-block alert-error notification fade in" >
+					<h6>Czy na pewno chcesz wyczyścić całą listę?</h6>
+					<div class="form-controls-alert">
+						<a href="" class="btn btn-default pull-left" data-ng-click="showDeletePopup(false)">Nie</a>
+						<a href="" class="btn btn-danger pull-right" data-ng-click="$ctrl.clear()">Tak</a>
+					</div>
+				</div><!-- end alert -->
+			</div>
+
+		</div>
+
+		<!-- DEBUG MODE FOR TESTS -->
+		<!--<div class="row">-->
+			<!--<div class="debug">-->
+				<!--<p class="text-info">{{ tasks | json}}</p>-->
+			<!--</div>-->
+		<!--</div>-->
+		<!-- DEBUG MODE FOR TESTS -->
+	</div>
+
+
+
