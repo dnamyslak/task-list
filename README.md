@@ -19,8 +19,7 @@ Add your tasks to the tasks list
 -	Local storage applied
 -	Tasks reordering (drag-and-drop-list)
 -	User can clear list ( + delete local storage ) with confirmatoin warning
-![screenshot2](https://user-images.githubusercontent.com/20269246/28246176-4ddff606-6a14-11e7-88df-281fe3d5c965.jpg)
-
+![screenshot2](https://user-images.githubusercontent.com/20269246/28246199-d90b4e60-6a14-11e7-9f24-b708d119da6e.jpg)
 
 
 
