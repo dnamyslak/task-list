@@ -12,9 +12,6 @@ Add your tasks to the tasks list
 ![screenshot4](https://user-images.githubusercontent.com/20269246/28246178-4f35a348-6a14-11e7-8d33-06e24f55c5a8.jpg)
 
 -	User can see filtered Tasks: all, complete, incomplete
-![screenshot3](https://user-images.githubusercontent.com/20269246/28246177-4e7134e0-6a14-11e7-991e-56ff3ea892be.jpg)
-
-
 -	User can search through tasks
 -	User can mark task items as URGENT
 ![urgent](https://user-images.githubusercontent.com/20269246/28246179-4f3aedf8-6a14-11e7-8b45-cef87ff7abab.jpg)
